@@ -17,20 +17,20 @@ MonoBehaviour:
     overrideState: 1
     value: 1
   mode:
-    overrideState: 0
+    overrideState: 1
     value: 0
   color:
-    overrideState: 0
+    overrideState: 1
     value: {r: 0, g: 0, b: 0, a: 1}
   center:
-    overrideState: 0
+    overrideState: 1
     value: {x: 0.5, y: 0.5}
   intensity:
-    overrideState: 0
-    value: 0
+    overrideState: 1
+    value: 0.325
   smoothness:
-    overrideState: 0
-    value: 0.2
+    overrideState: 1
+    value: 0.155
   roundness:
     overrideState: 0
     value: 1
@@ -78,11 +78,11 @@ MonoBehaviour:
     overrideState: 1
     value: 1
   intensity:
-    overrideState: 0
-    value: 0
+    overrideState: 1
+    value: 2.5
   threshold:
-    overrideState: 0
-    value: 1
+    overrideState: 1
+    value: 0.75
   softKnee:
     overrideState: 0
     value: 0.5
@@ -211,14 +211,14 @@ MonoBehaviour:
     overrideState: 0
     value: 100
   lift:
-    overrideState: 0
-    value: {x: 1, y: 1, z: 1, w: 0}
+    overrideState: 1
+    value: {x: 0.98075014, y: 0.98556256, z: 1, w: 0}
   gamma:
-    overrideState: 0
-    value: {x: 1, y: 1, z: 1, w: 0}
+    overrideState: 1
+    value: {x: 0.94708693, y: 0.97269356, z: 1, w: 0}
   gain:
-    overrideState: 0
-    value: {x: 1, y: 1, z: 1, w: 0}
+    overrideState: 1
+    value: {x: 1, y: 0.97045535, z: 0.89407784, w: 0}
   masterCurve:
     overrideState: 0
     value:
@@ -1439,8 +1439,8 @@ MonoBehaviour:
     overrideState: 0
     value: 1
   intensity:
-    overrideState: 0
-    value: 0
+    overrideState: 1
+    value: 0.75
   color:
     overrideState: 0
     value: {r: 0, g: 0, b: 0, a: 1}
