@@ -18,7 +18,7 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: -25
+    value: -50
   intensityX:
     overrideState: 0
     value: 1
@@ -61,10 +61,10 @@ MonoBehaviour:
     value: {x: 0.5, y: 0.5}
   intensity:
     overrideState: 1
-    value: 0.325
+    value: 0.25
   smoothness:
     overrideState: 1
-    value: 0.155
+    value: 1
   roundness:
     overrideState: 0
     value: 1
@@ -96,16 +96,38 @@ MonoBehaviour:
     value: 1
   focusDistance:
     overrideState: 1
-    value: 0.1
+    value: 40.2
   aperture:
     overrideState: 1
-    value: 14.9
+    value: 5
   focalLength:
     overrideState: 1
-    value: 300
+    value: 200
   kernelSize:
     overrideState: 1
     value: 2
+--- !u!114 &-2057380513326781261
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b94fcd11afffcb142908bfcb1e261fba, type: 3}
+  m_Name: MotionBlur
+  m_EditorClassIdentifier: 
+  active: 1
+  enabled:
+    overrideState: 1
+    value: 1
+  shutterAngle:
+    overrideState: 1
+    value: 360
+  sampleCount:
+    overrideState: 1
+    value: 10
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,6 +149,7 @@ MonoBehaviour:
   - {fileID: -2124434806234185010}
   - {fileID: 4722376682630464385}
   - {fileID: -8715009238526456561}
+  - {fileID: -2057380513326781261}
 --- !u!114 &4722376682630464385
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -139,7 +162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d65e486e4de6e5448a8fbb43dc8756a0, type: 3}
   m_Name: Grain
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   enabled:
     overrideState: 1
     value: 1
@@ -148,7 +171,7 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: 0.5
+    value: 0.25
   size:
     overrideState: 1
     value: 1.5
@@ -202,7 +225,7 @@ MonoBehaviour:
     value: 2.5
   threshold:
     overrideState: 1
-    value: 0.75
+    value: 0.5
   softKnee:
     overrideState: 0
     value: 0.5
