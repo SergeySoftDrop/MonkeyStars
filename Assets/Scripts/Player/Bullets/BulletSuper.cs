@@ -9,4 +9,9 @@ public class BulletSuper : Bullet
     {
         return gameConfig.BulletSuperSpeed;
     }
+
+    public override float Damage()
+    {
+        return gameConfig.BulletSuperDamage;
+    }
 }

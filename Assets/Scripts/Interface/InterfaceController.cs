@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.SceneManagement;
 
 public class InterfaceController : MonoBehaviour
@@ -22,20 +23,37 @@ public class InterfaceController : MonoBehaviour
     public MoveJoystick MoveJoystick;
     public RotateJoystick RotateJoystick;
 
+    public PostProcessVolume postProcessVolume;
+    public PostProcessProfile defaultProfile;
+    public PostProcessProfile damageProfile;
+
+    private bool damagedProfile = false;
+    private float profileTimer = 0f;
+
     public enum GameEnding {Lose, Win}
 
     private bool isPaused = false;
+
+    private void Update()
+    {
+        if(damagedProfile)
+        {
+            profileTimer += Time.deltaTime;
+
+            if(profileTimer >= gameConfig.DamageEffectTimeInSeconds)
+            {
+                postProcessVolume.profile = defaultProfile;
+                damagedProfile = false;
+                profileTimer = 0;
+            }
+        }
+    }
 
     private void Start()
     {
         UpdateEnemyCount(0);
         UpdatePlayerHPCount(gameConfig.PlayerHP);
         UpdateBaseHPCount(gameConfig.BaseHP);
-    }
-
-    public void CLoseAnyModal()
-    {
-        
     }
 
     public void TogglePause()
@@ -64,7 +82,7 @@ public class InterfaceController : MonoBehaviour
         EnemyCount.text = $"{count} / {gameConfig.Enemy_1Count + gameConfig.Enemy_2Count}";
     }
 
-    public void UpdatePlayerHPCount(int count)
+    public void UpdatePlayerHPCount(float count)
     {
         PlayerHP.text = $"{count} / {gameConfig.PlayerHP}";
     }
@@ -74,13 +92,29 @@ public class InterfaceController : MonoBehaviour
         BaseHP.text = $"{count} / {gameConfig.BaseHP}";
     }
 
-    private void Lose()
+    public void Damage()
     {
+        if(damagedProfile)
+        {
+            profileTimer = 0;
+            return;
+        }
+
+        damagedProfile = true;
+        postProcessVolume.profile = damageProfile;
+    }
+
+    public void Lose()
+    {
+        Time.timeScale = 0;
+        ToggleBlur();
         loseMenu.SetActive(true);
     }
 
-    private void Win()
+    public void Win()
     {
+        Time.timeScale = 0;
+        ToggleBlur();
         victoryMenu.SetActive(true);
     }
 

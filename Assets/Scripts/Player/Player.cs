@@ -1,6 +1,7 @@
 using Assets.Scripts.Conf.Scripts;
 using Assets.Scripts.Player;
 using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,8 +13,15 @@ public class Player : MonoBehaviour
 
     public GameObject basePlayer;
     public GameObject player;
+    public GameObject shipObject;
 
     public GameObject bulletPrefab;
+    public GameObject explosionPref;
+
+    public event Action onDamage;
+    public event Action onDestroy;
+
+    public float HP { get { return shipModel.HP; } set { shipModel.HP = value; } }
 
     void Start()
     {
@@ -66,7 +74,7 @@ public class Player : MonoBehaviour
         float basePlayerRadius = 0f;
         if(basePlayerCollider != null) basePlayerRadius = basePlayerCollider.bounds.extents.magnitude;
 
-        Vector3 randomDirection = Random.insideUnitSphere * gameConfig.PlayerSpwnRadius;
+        Vector3 randomDirection = UnityEngine.Random.insideUnitSphere * gameConfig.PlayerSpwnRadius;
         Vector3 randomPosition = basePlayer.transform.position + randomDirection;
 
         randomPosition += randomDirection.normalized * basePlayerRadius;
@@ -78,10 +86,27 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.CompareTag("PlayerBase"))
+        onDamage?.Invoke();
+        if (other.gameObject.CompareTag("EnemyBullet"))
         {
-            shipModel.HP--;
-            Respawn();
+            HP -= other.gameObject.GetComponent<EnemyBullet>().Damage();
+        }
+        else if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Enemy_2") || other.gameObject.CompareTag("PlayerBase") || other.gameObject.CompareTag("Meteorite"))
+        {
+            if (other.gameObject.CompareTag("PlayerBase")) Respawn();
+            HP -= gameConfig.PlayerCrashDamage;
+        }
+        else
+        {
+            HP--;
+        }
+
+        if(HP <= 0)
+        {
+            GameObject g = Instantiate(explosionPref, transform.position, Quaternion.identity);
+            Destroy(g, 2);
+            Destroy(gameObject);
+            onDestroy?.Invoke();
         }
     }
 }

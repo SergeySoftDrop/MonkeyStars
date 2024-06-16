@@ -18,6 +18,11 @@ public class Bullet : MonoBehaviour
         transform.Translate(Vector3.forward * GetSpeed() * Time.deltaTime);
     }
 
+    public virtual float Damage()
+    {
+        return gameConfig.BulletDamage;
+    }
+
     protected virtual float GetSpeed()
     {
         return gameConfig.BulletSpeed;

@@ -126,7 +126,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 0.2
+  m_Time: 0.3
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 0.3
@@ -205,7 +205,7 @@ GameObject:
   - component: {fileID: 5110952140540334907}
   m_Layer: 0
   m_Name: PlayerBulletBasic
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

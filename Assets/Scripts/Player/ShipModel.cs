@@ -20,7 +20,7 @@ namespace Assets.Scripts.Player
         public GameObject bulletPref;
         public GameObject bulletSuperPref;
 
-        public int HP = 0;
+        public float HP = 0;
 
         public bool boost = false;
 

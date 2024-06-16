@@ -32,7 +32,6 @@ public class BoostBtn : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
             if(holdTimer >= gameConfig.PlayerBoostMaxDurationInSecond)
             {
-                Debug.Log("Boos");
                 isReloading = true;
                 isHolding = false;
                 holdTimer = 0f;

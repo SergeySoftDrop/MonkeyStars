@@ -5,7 +5,7 @@ namespace Assets.Scripts.Conf.Scripts
     [CreateAssetMenu(fileName = "GameConfig", menuName = "Configs/GameConfig")]
     public class GameConfig : ScriptableObject
     {
-        public int PlayerHP = 10;
+        public float PlayerHP = 10;
         public float PlayerSpeed = 10.0f;
         public float PlayerBoost = 20.0f;
         public float PlayerBoostRateInSecond = 0.1f;
@@ -39,14 +39,22 @@ namespace Assets.Scripts.Conf.Scripts
         public float PlayerShootRateInSecond = 5.0f;
         public float PlayerSuperShootRateInSecond = 1.0f;
 
-        public float BulletSpeed = 1f;
-        public float BulletSuperSpeed = 1f;
+        public float BulletSpeed = 125f;
+        public float BulletSuperSpeed = 175f;
         public float BulletLifeTimeInSecond = 5f;
+        public float BulletDamage = 1f;
+        public float BulletSuperDamage = 2f;
+
+        public float EnemyBulletSpeed = 125f;
+        public float EnemyBulletDamage = 1f;
 
         public float MeteorRotateSpeed = 10f;
         public float MeteorCount = 20f;
-        public float MeteorHP = 10f;
         public float MeteorGenerateDistanceMax = 400f;
         public float MeteorGenerateDistanceMin = 800f;
+
+        public float DamageEffectTimeInSeconds = 2f;
+
+        public float PlayerCrashDamage = 1f;
     }
 }

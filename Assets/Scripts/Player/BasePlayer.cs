@@ -1,6 +1,7 @@
 using Assets.Scripts.Conf.Scripts;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class BasePlayer : MonoBehaviour
@@ -11,6 +12,9 @@ public class BasePlayer : MonoBehaviour
 
     public int health = 10;
 
+    public event Action OnDestroy;
+    public event Action onDamage;
+
     private void Start()
     {
         health = gameConfig.BaseHP;
@@ -18,15 +22,14 @@ public class BasePlayer : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.CompareTag("Meteorite") || other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Player"))
+        health -= 1;
+        onDamage?.Invoke();
+        if (health <= 0)
         {
-            health -= 1;
-            if (health <= 0)
-            {
-                GameObject g = Instantiate(baseExplosionPref, transform.position, Quaternion.identity);
-                Destroy(g, 2);
-                Destroy(gameObject);
-            }
+            GameObject g = Instantiate(baseExplosionPref, transform.position, Quaternion.identity);
+            Destroy(g, 2);
+            Destroy(gameObject);
+            OnDestroy?.Invoke();
         }
     }
 }

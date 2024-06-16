@@ -40,11 +40,12 @@ MonoBehaviour:
   Enemy_2SpawnCountMin: 1
   PlayerShootRateInSecond: 5
   PlayerSuperShootRateInSecond: 1
-  BulletSpeed: 1
-  BulletSuperSpeed: 1
+  BulletSpeed: 125
+  BulletSuperSpeed: 175
   BulletLifeTimeInSecond: 5
+  BulletDamage: 1
+  BulletSuperDamage: 2
   MeteorRotateSpeed: 10
   MeteorCount: 20
-  MeteorHP: 10
   MeteorGenerateDistanceMax: 300
   MeteorGenerateDistanceMin: 600
