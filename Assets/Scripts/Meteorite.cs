@@ -1,10 +1,11 @@
+using Assets.Scripts.Conf.Scripts;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Meteorite : MonoBehaviour
 {
-    public float rotationSpeed = 10f;
+    public GameConfig gameConfig;
     public GameObject DustParticle;
 
     private Vector3 randomDirection;
@@ -16,11 +17,13 @@ public class Meteorite : MonoBehaviour
 
     void Update()
     {
-        transform.Rotate(randomDirection * rotationSpeed * Time.deltaTime);
+        transform.Rotate(randomDirection * gameConfig.MeteorRotateSpeed * Time.deltaTime);
     }
+
     void OnCollisionEnter(Collision collision)
     {
-        Instantiate(DustParticle, transform.position, Quaternion.identity);
+        GameObject g = Instantiate(DustParticle, transform.position, Quaternion.identity);
+        Destroy(g, 2);
         Destroy(gameObject);
     }
 }

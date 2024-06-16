@@ -1,8 +1,9 @@
 ﻿using System;
+using UnityEngine;
 
 namespace Assets.Scripts
 {
-    public class GameCounter
+    public class GameCounter : MonoBehaviour
     { 
         public int EnemyCount { get; set; }
         public int BaseHP { get; set; }

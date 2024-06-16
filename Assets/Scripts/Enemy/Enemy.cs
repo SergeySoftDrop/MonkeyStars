@@ -1,3 +1,4 @@
+using Assets.Scripts.Conf.Scripts;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,12 +6,15 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] GameObject explosionParticle;
+
     public Transform target;
-    float speed = 2;
+    public GameConfig gameConfig;
+
+    private float speed;
 
     void Start()
     {
-        speed *= Random.Range(0.5f, 2);    
+        speed = Random.Range(gameConfig.Enemy_1SpeedMin, gameConfig.Enemy_1SpeedMax);
     }
 
     void Update()

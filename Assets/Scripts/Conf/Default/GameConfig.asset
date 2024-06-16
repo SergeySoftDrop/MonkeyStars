@@ -13,9 +13,38 @@ MonoBehaviour:
   m_Name: GameConfig
   m_EditorClassIdentifier: 
   PlayerHP: 10
+  PlayerSpeed: 20
+  PlayerBoost: 30
+  PlayerBoostRateInSecond: 0.2
+  PlayerBoostMaxDurationInSecond: 5
+  TransformRotationSpeed: 20
+  PlayerSpwnRadius: 400
   BaseHP: 20
   Enemy_1HP: 2
+  Enemy_1SpeedMax: 10
+  Enemy_1SpeedMin: 5
+  Enemy_1GenerateDistanceMin: 400
+  Enemy_11GenerateDistanceMax: 800
+  Enemy_1Count: 20
+  Enemy_1SpawnRate: 20
+  Enemy_1SpawnCountMax: 10
+  Enemy_1SpawnCountMin: 1
   Enemy_2HP: 2
-  EnemyCount: 20
+  Enemy_2SpeedMax: 10
+  Enemy_2SpeedMin: 5
+  Enemy_2GenerateDistanceMin: 150
+  Enemy_2GenerateDistanceMax: 150
+  Enemy_2Count: 20
+  Enemy_2SpawnRate: 20
+  Enemy_2SpawnCountMax: 10
+  Enemy_2SpawnCountMin: 1
   PlayerShootRateInSecond: 5
   PlayerSuperShootRateInSecond: 1
+  BulletSpeed: 1
+  BulletSuperSpeed: 1
+  BulletLifeTimeInSecond: 5
+  MeteorRotateSpeed: 10
+  MeteorCount: 20
+  MeteorHP: 10
+  MeteorGenerateDistanceMax: 300
+  MeteorGenerateDistanceMin: 600

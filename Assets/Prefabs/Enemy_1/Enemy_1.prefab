@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2260195088209041489}
   m_Layer: 0
   m_Name: Enemy_1
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46,7 +46,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 10, y: 4, z: 5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &4430939854799198832
 Rigidbody:
@@ -78,6 +78,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosionParticle: {fileID: 5457579478387948447, guid: df18f2944b07016478e272f0d95cb8b2, type: 3}
   target: {fileID: 0}
+  gameConfig: {fileID: 11400000, guid: 8b3c2f42fb26ed145b82cbffa644b040, type: 2}
 --- !u!1 &1416923516622689189
 GameObject:
   m_ObjectHideFlags: 0

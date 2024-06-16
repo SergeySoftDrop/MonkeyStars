@@ -20,4 +20,14 @@ public class MoveJoystick : Joystick
             handle.anchoredPosition = new Vector2(inputVector.x * (background.sizeDelta.x / 2), inputVector.y * (background.sizeDelta.y / 2));
         }
     }
+
+    public override float Horizontal()
+    {
+        return -inputVector.x;
+    }
+
+    public override float Vertical()
+    {
+        return -inputVector.y;
+    }
 }

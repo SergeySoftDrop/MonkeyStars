@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Meteorite
+  - Enemy
+  - PlayerBase
+  - Enemy_2
   layers:
   - Default
   - TransparentFX

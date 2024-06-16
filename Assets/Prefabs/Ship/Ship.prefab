@@ -204,12 +204,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9220446767453917785}
-  - component: {fileID: 4975755290200823920}
+  - component: {fileID: 3540896443752885569}
   - component: {fileID: 7181181349661755270}
-  - component: {fileID: 828220268609668302}
+  - component: {fileID: 231779022411625167}
   m_Layer: 0
   m_Name: Ship
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -231,18 +231,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &4975755290200823920
-BoxCollider:
+--- !u!136 &3540896443752885569
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5560560365406609913}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Radius: 14.5
+  m_Height: 58.25
+  m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &7181181349661755270
 Rigidbody:
@@ -260,7 +261,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &828220268609668302
+--- !u!114 &231779022411625167
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -269,15 +270,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 5560560365406609913}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d7f207a9721a78459c62eac25d9c1d3, type: 3}
+  m_Script: {fileID: 11500000, guid: a9c2a19ce543f4b44ba3b9d8541b8c20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 2248909182336230029, guid: 434e99802d0e99a4b8ffde3e1f974049, type: 3}
-  basePlayer: {fileID: 0}
-  speed: 1
-  boost: 20
-  sens: 50
-  hp: 5
+  gameConfig: {fileID: 11400000, guid: 8b3c2f42fb26ed145b82cbffa644b040, type: 2}
+  ship: {fileID: 626166654445700501}
+  GunFirstTransform: {fileID: 0}
+  GunSecondTransform: {fileID: 0}
+  GunThirdTransform: {fileID: 0}
+  GunFourthTransform: {fileID: 0}
+  GunSuperTransform: {fileID: 0}
+  bulletPref: {fileID: 2248909182336230029, guid: 434e99802d0e99a4b8ffde3e1f974049, type: 3}
+  bulletSuperPref: {fileID: 5513256952809228739, guid: fbb8dfa9e6b56df4fa42eee10b2a562a, type: 3}
+  HP: 0
+  boost: 0
 --- !u!1001 &3372774520412330580
 PrefabInstance:
   m_ObjectHideFlags: 0

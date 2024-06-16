@@ -21,7 +21,7 @@ public class RotateJoystick : Joystick
         }
     }
 
-    public new float Vertical()
+    public override float Vertical()
     {
         return 0;
     }

@@ -2,7 +2,9 @@ using Assets.Scripts.Conf.Scripts;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class InterfaceController : MonoBehaviour
 {
@@ -26,7 +28,7 @@ public class InterfaceController : MonoBehaviour
 
     private void Start()
     {
-        UpdateEnemyCount(gameConfig.EnemyCount);
+        UpdateEnemyCount(0);
         UpdatePlayerHPCount(gameConfig.PlayerHP);
         UpdateBaseHPCount(gameConfig.BaseHP);
     }
@@ -59,7 +61,7 @@ public class InterfaceController : MonoBehaviour
 
     public void UpdateEnemyCount(int count)
     {
-        EnemyCount.text = $"{count} / {gameConfig.EnemyCount}";
+        EnemyCount.text = $"{count} / {gameConfig.Enemy_1Count + gameConfig.Enemy_2Count}";
     }
 
     public void UpdatePlayerHPCount(int count)
@@ -85,5 +87,15 @@ public class InterfaceController : MonoBehaviour
     private void ToggleBlur()
     {
         blurPanel.SetActive(!blurPanel.activeSelf);
+    }
+
+    public void GameExit()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene(2);
     }
 }

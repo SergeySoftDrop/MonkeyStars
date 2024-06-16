@@ -1,3 +1,4 @@
+using Assets.Scripts.Conf.Scripts;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,8 +6,7 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     public Transform camTarget;
-    public float pLerp = 0.2f;
-    public float rLerp = 0.1f;
+    public CameraConfig conf;
 
     private void Start()
     {
@@ -15,7 +15,7 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
-        transform.position = Vector3.Lerp(transform.position, camTarget.position, pLerp);
-        transform.rotation = Quaternion.Lerp(transform.rotation, camTarget.rotation, rLerp);
+        transform.position = Vector3.Lerp(transform.position, camTarget.position, conf.pLerp);
+        transform.rotation = Quaternion.Lerp(transform.rotation, camTarget.rotation, conf.rLerp);
     }
 }

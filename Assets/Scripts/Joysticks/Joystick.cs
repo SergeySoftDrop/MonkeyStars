@@ -26,12 +26,12 @@ public abstract class Joystick : MonoBehaviour, IDragHandler, IPointerUpHandler,
         handle.anchoredPosition = Vector2.zero;
     }
 
-    public float Horizontal()
+    public virtual float Horizontal()
     {
         return inputVector.x;
     }
 
-    public float Vertical()
+    public virtual float Vertical()
     {
         return inputVector.y;
     }

@@ -1,25 +1,26 @@
+using Assets.Scripts.Conf.Scripts;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    public Text statsText;
-    public Text endGameTitle;
-    public GameObject playerBase;
-    public Transform playerBasePosition;
-    public GameObject playerShip;
-    public GameObject enemyPrefab;
+    public GameConfig gameConfig;
+
+    public Transform playerBase;
+
+    public GameObject enemy_1Prefab;
+    public GameObject enemy_2Prefab;
     public GameObject meteoritePrefab;
-    public GameObject pauseMenu;
-    public int playerLives = 3;
-    public int baseHealth = 10;
-    public int enemyCount = 5;
-    public int meteoriteCount = 5;
+
     private List<GameObject> enemies = new List<GameObject>();
-    private bool isPaused = false;
-    private bool isGameOver = false;
+
+    private bool enemySpawnReloading = false;
+
+    private float enemyReloadSpawnTimer = 0f;
+    private int enemySpawnCount = 0;
 
     void Start()
     {
@@ -29,55 +30,62 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            TogglePause();
-        }
-
-        if (playerLives <= 0 || baseHealth <= 0)
-        {
-            EndGame(false);
-        }
-        else if (enemies.Count == 0)
-        {
-            EndGame(true);
-        }
-
-        UpdateStats();
+        GenerateEnemies();
     }
 
     void GenerateEnemies()
     {
-        for (int i = 0; i < enemyCount; i++)
+        if (enemySpawnReloading)
         {
-            Vector3 randomPosition = new Vector3(Random.Range(-10, 10), 0, Random.Range(-10, 10));
-            GameObject enemy = Instantiate(enemyPrefab, randomPosition, Quaternion.identity);
-            enemies.Add(enemy);
+            enemyReloadSpawnTimer += Time.deltaTime;
+            if (enemyReloadSpawnTimer >= gameConfig.Enemy_1SpawnRate)
+            {
+                enemyReloadSpawnTimer = 0;
+                enemySpawnReloading = false;
+            }
+            else
+            {
+                return;
+            }
         }
+
+        int spawnCount = 0;
+
+        if(enemySpawnCount < gameConfig.Enemy_1Count)
+        {
+            if (enemySpawnCount == 0)
+            {
+                spawnCount = Random.Range(gameConfig.Enemy_1SpawnCountMin, gameConfig.Enemy_1SpawnCountMax);
+            }
+            else if (gameConfig.Enemy_1Count - enemySpawnCount <= gameConfig.Enemy_1SpawnCountMin)
+            {
+                spawnCount = gameConfig.Enemy_1Count - enemySpawnCount;
+            }
+            else
+            {
+                spawnCount = Random.Range(gameConfig.Enemy_1SpawnCountMin, gameConfig.Enemy_1SpawnCountMax);
+            }
+        }
+
+        for(int i = 0; i < spawnCount; i++)
+        {
+            Vector3 randomPos = playerBase.position + Random.insideUnitSphere * Random.Range(gameConfig.Enemy_1GenerateDistanceMin, gameConfig.Enemy_11GenerateDistanceMax);
+            GameObject enemy = Instantiate(enemy_1Prefab, randomPos, Quaternion.identity);
+            enemy.GetComponent<Enemy>().target = playerBase.transform;
+            enemies.Add(enemy);
+            enemySpawnCount++;
+        }
+
+        enemySpawnReloading = true;
     }
 
     void GenerateMeteorites()
     {
-        for (int i = 0; i < meteoriteCount; i++)
+        for(int i = 0; i < gameConfig.MeteorCount; i++)
         {
-            Vector3 randomPosition = new Vector3(Random.Range(-10, 10), 0, Random.Range(-10, 10));
-            Instantiate(meteoritePrefab, randomPosition, Quaternion.identity);
+            Vector3 randomPos = Random.onUnitSphere * Random.Range(gameConfig.MeteorGenerateDistanceMin, gameConfig.MeteorGenerateDistanceMax);
+            Instantiate(meteoritePrefab, randomPos, Quaternion.identity);
         }
-    }
-
-    void TogglePause()
-    {
-        isPaused = !isPaused;
-        pauseMenu.SetActive(isPaused);
-        Time.timeScale = isPaused ? 0 : 1;
-    }
-
-    void EndGame(bool won)
-    {
-        isGameOver = true;
-        endGameTitle.text = won ? "You Win!" : "Game Over";
-        pauseMenu.SetActive(true);
-        Time.timeScale = 0;
     }
 
     void UpdateStats()

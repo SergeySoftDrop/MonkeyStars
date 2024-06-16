@@ -10,11 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 3683818577821687986}
   - component: {fileID: 3736478740341388914}
-  - component: {fileID: 5458172481716940613}
+  - component: {fileID: 1745632449045872702}
   - component: {fileID: 7753984749797360661}
   m_Layer: 0
   m_Name: Asteroid
-  m_TagString: Untagged
+  m_TagString: Meteorite
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -51,20 +51,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!64 &5458172481716940613
-MeshCollider:
+--- !u!65 &1745632449045872702
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3683818577821687987}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
+  serializedVersion: 2
+  m_Size: {x: 10, y: 7, z: 10}
+  m_Center: {x: 0, y: -1.5, z: 0}
 --- !u!114 &7753984749797360661
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77,7 +76,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdc5111c750d9d14d831793f1e16bcb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 120
+  gameConfig: {fileID: 11400000, guid: 8b3c2f42fb26ed145b82cbffa644b040, type: 2}
   DustParticle: {fileID: 4333410233653575598, guid: 9938aeb4f86737140aa40682bb40200b, type: 3}
 --- !u!1 &4685314334572181827
 GameObject:

@@ -1,17 +1,23 @@
+using Assets.Scripts.Conf.Scripts;
+using Assets.Scripts.Player;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] GameObject bulletPrefab;
-    [SerializeField] Transform basePlayer;
-    public float speed = 1, boost = 20, sens = 50;
-    public int hp = 5;
+    public GameConfig gameConfig;
+    public ShipModel shipModel;
+    public InterfaceController interfaceController;
+
+    public GameObject basePlayer;
+    public GameObject player;
+
+    public GameObject bulletPrefab;
 
     void Start()
     {
-        Respawn();    
+        Respawn();
     }
 
     void Update()
@@ -22,46 +28,60 @@ public class Player : MonoBehaviour
 
     void Rotate()
     {
-        float xAxiox = 0;
-        float yAxiox = 0;
-        float zAxiox = 0;
+        float yAxis = interfaceController.RotateJoystick.Horizontal();
+        float xAxis = interfaceController.MoveJoystick.Vertical();
+        float zAxis = interfaceController.MoveJoystick.Horizontal();
 
-        if (Input.GetKey(KeyCode.A)) zAxiox = 1;
-        if (Input.GetKey(KeyCode.D)) zAxiox = -1;
-        if (Input.GetKey(KeyCode.W)) xAxiox = 1;
-        if (Input.GetKey(KeyCode.S)) xAxiox = -1;
-        if (Input.GetKey(KeyCode.Q)) yAxiox = -1;
-        if (Input.GetKey(KeyCode.E)) yAxiox = 1;
-
-        Vector3 allAxios = new Vector3(xAxiox, yAxiox, zAxiox) * sens * Time.deltaTime;
-        Quaternion newOrentation = Quaternion.Euler(allAxios);
-        transform.rotation *= newOrentation;
+        Vector3 allAxis = new Vector3(xAxis, yAxis, zAxis) * gameConfig.TransformRotationSpeed * Time.deltaTime;
+        Quaternion newRotation = Quaternion.Euler(allAxis);
+        player.transform.rotation *= newRotation;
     }
 
     void Move()
     {
-        float currSpeed = speed;
-        if (Input.GetKey(KeyCode.Space)) currSpeed *= boost;
-        transform.Translate(Vector3.forward * currSpeed * Time.deltaTime);
+        player.transform.Translate(Vector3.forward * (gameConfig.PlayerSpeed + (shipModel.boost ? gameConfig.PlayerBoost : 0)) * Time.deltaTime);
     }
+
 
     public void Shoot()
     {
-        Debug.Log(true);
+        List<Vector3> firePositions = new List<Vector3>
+        {
+            shipModel.GunFirstTransform.position, 
+            shipModel.GunSecondTransform.position, 
+            shipModel.GunThirdTransform.position, 
+            shipModel.GunFourthTransform.position,
+        };
+
+        foreach (var position in firePositions)
+        {
+            Instantiate(bulletPrefab, position + shipModel.ship.transform.forward * 2, transform.rotation);
+        }
     }
 
     void Respawn()
     {
-        Vector3 randomPos = Random.onUnitSphere * 100;
-        transform.position = randomPos;
-        transform.LookAt(basePlayer);
+        Collider basePlayerCollider = basePlayer.GetComponent<Collider>();
+
+        float basePlayerRadius = 0f;
+        if(basePlayerCollider != null) basePlayerRadius = basePlayerCollider.bounds.extents.magnitude;
+
+        Vector3 randomDirection = Random.insideUnitSphere * gameConfig.PlayerSpwnRadius;
+        Vector3 randomPosition = basePlayer.transform.position + randomDirection;
+
+        randomPosition += randomDirection.normalized * basePlayerRadius;
+        randomPosition.y = basePlayer.transform.position.y;
+
+        transform.position = randomPosition;
+        transform.LookAt(basePlayer.transform);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        Bullet bulletScript = other.GetComponent<Bullet>();
-        if (bulletScript != null) return;
-        hp--;
-        Respawn();
+        if(other.gameObject.CompareTag("PlayerBase"))
+        {
+            shipModel.HP--;
+            Respawn();
+        }
     }
 }
