@@ -18,7 +18,6 @@ public class Player : MonoBehaviour
     {
         Rotate();
         Move();
-        Shoot();
     }
 
     void Rotate()
@@ -46,13 +45,9 @@ public class Player : MonoBehaviour
         transform.Translate(Vector3.forward * currSpeed * Time.deltaTime);
     }
 
-    void Shoot()
+    public void Shoot()
     {
-        if (Input.GetMouseButton(0))
-        {
-            Vector3 firePosition = transform.position + transform.forward * 2;
-            Instantiate(bulletPrefab, firePosition, transform.rotation);
-        }
+        Debug.Log(true);
     }
 
     void Respawn()
