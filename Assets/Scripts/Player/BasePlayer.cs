@@ -10,7 +10,7 @@ public class BasePlayer : MonoBehaviour
 
     public GameObject baseExplosionPref;
 
-    public int health = 10;
+    public float health = 10;
 
     public event Action OnDestroy;
     public event Action onDamage;

@@ -26,6 +26,7 @@ public class Meteorite : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        Debug.Log($"Meteorite hit by {other.gameObject.tag}");
         GameObject g = Instantiate(DustParticle, transform.position, Quaternion.identity);
         Destroy(g, 2);
         Destroy(gameObject);

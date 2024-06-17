@@ -28,8 +28,9 @@ public class Bullet : MonoBehaviour
         return gameConfig.BulletSpeed;
     }
 
-    void OnCollisionEnter(Collision collision)
+    void OnTriggerEnter(Collider other)
     {
+        Debug.Log($"Bullet hit {other.gameObject.tag}");
         Destroy(gameObject);
     }
 }

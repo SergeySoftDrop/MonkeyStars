@@ -33,14 +33,26 @@ public class InterfaceController : MonoBehaviour
     public enum GameEnding {Lose, Win}
 
     private bool isPaused = false;
+    private bool escapePressed = false;
+    private bool gameEnded = false;
 
     private void Update()
     {
-        if(damagedProfile)
+        if (Input.GetKeyDown(KeyCode.Escape) && !escapePressed)
+        {
+            escapePressed = true;
+            TogglePause();
+        }
+        else if (Input.GetKeyUp(KeyCode.Escape))
+        {
+            escapePressed = false;
+        }
+
+        if (damagedProfile)
         {
             profileTimer += Time.deltaTime;
 
-            if(profileTimer >= gameConfig.DamageEffectTimeInSeconds)
+            if (profileTimer >= gameConfig.DamageEffectTimeInSeconds)
             {
                 postProcessVolume.profile = defaultProfile;
                 damagedProfile = false;
@@ -48,6 +60,7 @@ public class InterfaceController : MonoBehaviour
             }
         }
     }
+
 
     private void Start()
     {
@@ -58,23 +71,12 @@ public class InterfaceController : MonoBehaviour
 
     public void TogglePause()
     {
+        if (gameEnded) return;
+
         isPaused = !isPaused;
         Time.timeScale = isPaused ? 0 : 1;
         pauseMenu.SetActive(isPaused);
         ToggleBlur();
-    }
-
-    public void GameEnd(GameEnding res)
-    {
-        switch (res)
-        {
-            case GameEnding.Lose:
-                Lose();
-                break;
-            case GameEnding.Win:
-                Win();
-                break;
-        }
     }
 
     public void UpdateEnemyCount(int count)
@@ -87,7 +89,7 @@ public class InterfaceController : MonoBehaviour
         PlayerHP.text = $"{count} / {gameConfig.PlayerHP}";
     }
 
-    public void UpdateBaseHPCount(int count)
+    public void UpdateBaseHPCount(float count)
     {
         BaseHP.text = $"{count} / {gameConfig.BaseHP}";
     }
@@ -107,6 +109,7 @@ public class InterfaceController : MonoBehaviour
     public void Lose()
     {
         Time.timeScale = 0;
+        gameEnded = true;
         ToggleBlur();
         loseMenu.SetActive(true);
     }
@@ -114,6 +117,7 @@ public class InterfaceController : MonoBehaviour
     public void Win()
     {
         Time.timeScale = 0;
+        gameEnded = true;
         ToggleBlur();
         victoryMenu.SetActive(true);
     }

@@ -202,10 +202,11 @@ GameObject:
   m_Component:
   - component: {fileID: 7124279106035619196}
   - component: {fileID: 7124279106035619195}
-  - component: {fileID: 7538371438610175076}
+  - component: {fileID: 7338603778521512199}
+  - component: {fileID: 2698815683298210225}
   m_Layer: 0
   m_Name: EnemyBullet
-  m_TagString: Untagged
+  m_TagString: EnemyBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -239,7 +240,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.3, y: 0.2, z: 0.4}
   m_Center: {x: 0.000000059604645, y: -0.0000038146973, z: 0.00000038743016}
---- !u!114 &7538371438610175076
+--- !u!65 &7338603778521512199
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7124279106035619194}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.3, y: 0.2, z: 0.4}
+  m_Center: {x: 0.000000059604645, y: -0.0000038146973, z: 0.00000038743016}
+--- !u!114 &2698815683298210225
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -248,7 +262,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7124279106035619194}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4bb685ebf53a94943a39e57e7fe9211b, type: 3}
+  m_Script: {fileID: 11500000, guid: 07d869fc4ce661d4480c7ddf7f75d8c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  gameConfig: {fileID: 11400000, guid: 8b3c2f42fb26ed145b82cbffa644b040, type: 2}

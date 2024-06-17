@@ -28,6 +28,7 @@ public class BoostBtn : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         }
         else if(isHolding)
         {
+            Debug.Log("Boost");
             holdTimer += Time.deltaTime;
 
             if(holdTimer >= gameConfig.PlayerBoostMaxDurationInSecond)
@@ -37,6 +38,18 @@ public class BoostBtn : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                 holdTimer = 0f;
                 onHoldEnd.Invoke();
             }
+        } 
+        else if (Input.GetKey(KeyCode.Space))
+        {
+            onHoldStart.Invoke();
+            isHolding = true;
+        }
+        else if(isHolding)
+        {
+            isHolding = false;
+            isReloading = true;
+            holdTimer = 0.0f;
+            onHoldEnd.Invoke();
         }
     }
 

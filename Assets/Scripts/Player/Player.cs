@@ -40,6 +40,42 @@ public class Player : MonoBehaviour
         float xAxis = interfaceController.MoveJoystick.Vertical();
         float zAxis = interfaceController.MoveJoystick.Horizontal();
 
+        if (zAxis == 0)
+        {
+            if (Input.GetKey(KeyCode.A))
+            {
+                zAxis = 1;
+            }
+            else if (Input.GetKey(KeyCode.D))
+            {
+                zAxis = -1;
+            }
+        }
+
+        if (xAxis == 0)
+        {
+            if (Input.GetKey(KeyCode.W))
+            {
+                xAxis = -1;
+            }
+            else if (Input.GetKey(KeyCode.S))
+            {
+                xAxis = 1;
+            }
+        }
+
+        if (yAxis == 0)
+        {
+            if (Input.GetKey(KeyCode.Q))
+            {
+                yAxis = -1;
+            }
+            else if (Input.GetKey(KeyCode.E))
+            {
+                yAxis = 1;
+            }
+        }
+
         Vector3 allAxis = new Vector3(xAxis, yAxis, zAxis) * gameConfig.TransformRotationSpeed * Time.deltaTime;
         Quaternion newRotation = Quaternion.Euler(allAxis);
         player.transform.rotation *= newRotation;
@@ -61,7 +97,7 @@ public class Player : MonoBehaviour
             shipModel.GunFourthTransform.position,
         };
 
-        foreach (var position in firePositions)
+        foreach(var position in firePositions)
         {
             Instantiate(bulletPrefab, position + shipModel.ship.transform.forward * 2, transform.rotation);
         }
@@ -103,9 +139,9 @@ public class Player : MonoBehaviour
 
         if(HP <= 0)
         {
-            GameObject g = Instantiate(explosionPref, transform.position, Quaternion.identity);
+            GameObject g = Instantiate(explosionPref, shipModel.transform.position, Quaternion.identity);
             Destroy(g, 2);
-            Destroy(gameObject);
+            Destroy(shipModel);
             onDestroy?.Invoke();
         }
     }
