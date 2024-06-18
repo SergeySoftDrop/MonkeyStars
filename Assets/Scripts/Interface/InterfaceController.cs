@@ -41,7 +41,7 @@ public class InterfaceController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape) && !escapePressed)
         {
             escapePressed = true;
-            TogglePause();
+            //TogglePause();
         }
         else if (Input.GetKeyUp(KeyCode.Escape))
         {
@@ -76,7 +76,7 @@ public class InterfaceController : MonoBehaviour
         isPaused = !isPaused;
         Time.timeScale = isPaused ? 0 : 1;
         pauseMenu.SetActive(isPaused);
-        ToggleBlur();
+        //ToggleBlur();
     }
 
     public void UpdateEnemyCount(int count)
@@ -110,7 +110,7 @@ public class InterfaceController : MonoBehaviour
     {
         Time.timeScale = 0;
         gameEnded = true;
-        ToggleBlur();
+        //ToggleBlur();
         loseMenu.SetActive(true);
     }
 
@@ -118,7 +118,7 @@ public class InterfaceController : MonoBehaviour
     {
         Time.timeScale = 0;
         gameEnded = true;
-        ToggleBlur();
+        //ToggleBlur();
         victoryMenu.SetActive(true);
     }
 

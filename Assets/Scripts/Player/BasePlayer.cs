@@ -24,6 +24,8 @@ public class BasePlayer : MonoBehaviour
     {
         if(health <= 0) return;
 
+        if(other.gameObject.CompareTag("Bullet") || other.gameObject.CompareTag("EnemyBullet")) return;
+
         health -= 1;
         onDamage?.Invoke();
         if (health <= 0)

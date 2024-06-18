@@ -12,32 +12,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99a69e143e5829749ad021dc8ef92934, type: 3}
   m_Name: GameConfig
   m_EditorClassIdentifier: 
-  PlayerHP: 100
-  PlayerSpeed: 25
-  PlayerBoost: 30
+  PlayerHP: 80
+  PlayerSpeed: 42
+  PlayerBoost: 28
   PlayerBoostRateInSecond: 0.2
-  PlayerBoostMaxDurationInSecond: 5
-  TransformRotationSpeed: 25
-  PlayerSpwnRadius: 450
-  BaseHP: 50
+  PlayerBoostMaxDurationInSecond: 10
+  TransformRotationSpeed: 30
+  PlayerSpwnRadius: 500
+  BaseHP: 25
   Enemy_1HP: 2
   Enemy_1SpeedMax: 10
   Enemy_1SpeedMin: 5
   Enemy_1GenerateDistanceMin: 300
-  Enemy_1GenerateDistanceMax: 400
-  Enemy_1Count: 10
-  Enemy_1SpawnRate: 20
+  Enemy_1GenerateDistanceMax: 450
+  Enemy_1Count: 20
+  Enemy_1SpawnRate: 25
   Enemy_1SpawnCountMax: 5
   Enemy_1SpawnCountMin: 1
   Enemy_2HP: 2
-  Enemy_2SpeedMax: 25
-  Enemy_2SpeedMin: 10
-  Enemy_2RotateSens: 20
-  Enemy_2GenerateDistanceMin: 820
-  Enemy_2GenerateDistanceMax: 850
+  Enemy_2SpeedMax: 30
+  Enemy_2SpeedMin: 20
+  Enemy_2RotateSens: 25
+  Enemy_2GenerateDistanceMin: 850
+  Enemy_2GenerateDistanceMax: 900
   Enemy_2Count: 15
   Enemy_2SpawnRate: 20
-  Enemy_2SpawnCountMax: 5
+  Enemy_2SpawnCountMax: 3
   Enemy_2SpawnCountMin: 1
   Enemy_2Shootcount: 5
   Enemy_2ShootRateInSecond: 1
@@ -45,16 +45,16 @@ MonoBehaviour:
   Enemy_2ShootDistance: 150
   PlayerShootRateInSecond: 5
   PlayerSuperShootRateInSecond: 1
-  BulletSpeed: 125
+  BulletSpeed: 150
   BulletSuperSpeed: 175
   BulletLifeTimeInSecond: 5
   BulletDamage: 1
   BulletSuperDamage: 2
   EnemyBulletSpeed: 125
-  EnemyBulletDamage: 0.5
+  EnemyBulletDamage: 1
   MeteorRotateSpeed: 20
   MeteorCount: 30
-  MeteorGenerateDistanceMax: 300
+  MeteorGenerateDistanceMax: 150
   MeteorGenerateDistanceMin: 600
   DamageEffectTimeInSeconds: 2
   PlayerCrashDamage: 1

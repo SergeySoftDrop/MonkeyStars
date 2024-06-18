@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pLerp: 0.2
   rLerp: 0.1
-  FreeCameraRotationSpeed: 10
+  FreeCameraRotationSpeed: 3
