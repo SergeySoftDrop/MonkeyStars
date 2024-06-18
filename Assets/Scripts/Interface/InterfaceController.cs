@@ -2,7 +2,7 @@ using Assets.Scripts.Conf.Scripts;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using UnityEditor.SearchService;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.SceneManagement;
@@ -134,6 +134,8 @@ public class InterfaceController : MonoBehaviour
 
     public void Restart()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadSceneAsync(2);
     }
+
+
 }

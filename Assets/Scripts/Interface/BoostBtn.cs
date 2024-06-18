@@ -11,6 +11,7 @@ public class BoostBtn : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     private bool isHolding = false;
     private bool isReloading = false;
+    private bool isUsingSpace = false;
 
     private float holdTimer = 0.0f;
     private float reloadTimer = 0.0f;
@@ -28,7 +29,6 @@ public class BoostBtn : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         }
         else if(isHolding)
         {
-            Debug.Log("Boost");
             holdTimer += Time.deltaTime;
 
             if(holdTimer >= gameConfig.PlayerBoostMaxDurationInSecond)
@@ -38,24 +38,34 @@ public class BoostBtn : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                 holdTimer = 0f;
                 onHoldEnd.Invoke();
             }
-        } 
-        else if (Input.GetKey(KeyCode.Space))
-        {
-            onHoldStart.Invoke();
-            isHolding = true;
         }
-        else if(isHolding)
+
+        if(!isReloading && Input.GetKeyDown(KeyCode.Space))
         {
-            isHolding = false;
-            isReloading = true;
-            holdTimer = 0.0f;
-            onHoldEnd.Invoke();
+            if(!isHolding)
+            {
+                isUsingSpace = true;
+                onHoldStart.Invoke();
+                isHolding = true;
+            }
+        }
+
+        if(isUsingSpace && Input.GetKeyUp(KeyCode.Space))
+        {
+            isUsingSpace = false;
+            if(isHolding)
+            {
+                isHolding = false;
+                isReloading = true;
+                holdTimer = 0f;
+                onHoldEnd.Invoke();
+            }
         }
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        if(!isReloading)
+        if(!isReloading && !isUsingSpace)
         {
             onHoldStart.Invoke();
             isHolding = true;
@@ -64,7 +74,7 @@ public class BoostBtn : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        if(!isReloading)
+        if(!isReloading && !isUsingSpace)
         {
             isHolding = false;
             isReloading = true;

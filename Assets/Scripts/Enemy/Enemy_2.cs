@@ -14,6 +14,8 @@ public class Enemy_2 : MonoBehaviour
     public GameObject bulletPref;
     public GameObject explosionPref;
 
+    public AudioSource shootsound;
+
     private GameObject currTarget;
     private float currTargetDistance;
     private float HP;
@@ -130,6 +132,8 @@ public class Enemy_2 : MonoBehaviour
             {
                 Instantiate(bulletPref, position.position + transform.forward * 2, position.rotation);
             }
+
+            shootsound.Play();
         }
     }
 

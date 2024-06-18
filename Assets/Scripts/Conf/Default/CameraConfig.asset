@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc7d300dd68c7a84c846aa9e8cd39c63, type: 3}
   m_Name: CameraConfig
   m_EditorClassIdentifier: 
-  pLerp: 0.02
-  rLerp: 0.01
+  pLerp: 0.2
+  rLerp: 0.1
+  FreeCameraRotationSpeed: 10

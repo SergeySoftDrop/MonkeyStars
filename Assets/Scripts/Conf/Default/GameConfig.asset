@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GameConfig
   m_EditorClassIdentifier: 
   PlayerHP: 100
-  PlayerSpeed: 50
+  PlayerSpeed: 25
   PlayerBoost: 30
   PlayerBoostRateInSecond: 0.2
   PlayerBoostMaxDurationInSecond: 5
@@ -23,21 +23,21 @@ MonoBehaviour:
   Enemy_1HP: 2
   Enemy_1SpeedMax: 10
   Enemy_1SpeedMin: 5
-  Enemy_1GenerateDistanceMin: 400
-  Enemy_1GenerateDistanceMax: 150
-  Enemy_1Count: 15
+  Enemy_1GenerateDistanceMin: 300
+  Enemy_1GenerateDistanceMax: 400
+  Enemy_1Count: 10
   Enemy_1SpawnRate: 20
-  Enemy_1SpawnCountMax: 10
+  Enemy_1SpawnCountMax: 5
   Enemy_1SpawnCountMin: 1
   Enemy_2HP: 2
-  Enemy_2SpeedMax: 75
-  Enemy_2SpeedMin: 100
-  Enemy_2RotateSens: 5
+  Enemy_2SpeedMax: 25
+  Enemy_2SpeedMin: 10
+  Enemy_2RotateSens: 20
   Enemy_2GenerateDistanceMin: 820
   Enemy_2GenerateDistanceMax: 850
   Enemy_2Count: 15
   Enemy_2SpawnRate: 20
-  Enemy_2SpawnCountMax: 10
+  Enemy_2SpawnCountMax: 5
   Enemy_2SpawnCountMin: 1
   Enemy_2Shootcount: 5
   Enemy_2ShootRateInSecond: 1

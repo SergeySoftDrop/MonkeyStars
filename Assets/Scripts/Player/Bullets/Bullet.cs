@@ -30,7 +30,6 @@ public class Bullet : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log($"Bullet hit {other.gameObject.tag}");
         Destroy(gameObject);
     }
 }

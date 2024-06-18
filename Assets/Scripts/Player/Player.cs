@@ -13,25 +13,34 @@ public class Player : MonoBehaviour
 
     public GameObject basePlayer;
     public GameObject player;
-    public GameObject shipObject;
 
     public GameObject bulletPrefab;
     public GameObject explosionPref;
 
+    public AudioSource shootSound;
+
     public event Action onDamage;
     public event Action onDestroy;
 
-    public float HP { get { return shipModel.HP; } set { shipModel.HP = value; } }
+    public float HP;
 
     void Start()
     {
+        HP = gameConfig.PlayerHP;
         Respawn();
     }
 
     void Update()
     {
+        ResetShipPos();
         Rotate();
         Move();
+    }
+
+    private void ResetShipPos()
+    {
+        if(shipModel.transform.localPosition != Vector3.zero) shipModel.transform.localPosition = Vector3.zero;
+        if(shipModel.transform.localRotation != Quaternion.identity)  shipModel.transform.localRotation = Quaternion.identity;
     }
 
     void Rotate()
@@ -99,8 +108,10 @@ public class Player : MonoBehaviour
 
         foreach(var position in firePositions)
         {
-            Instantiate(bulletPrefab, position + shipModel.ship.transform.forward * 2, transform.rotation);
+            Instantiate(bulletPrefab, position + shipModel.transform.forward * 2, transform.rotation);
         }
+
+        shootSound.Play();
     }
 
     void Respawn()
@@ -122,6 +133,8 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if(HP <= 0) return;
+
         onDamage?.Invoke();
         if (other.gameObject.CompareTag("EnemyBullet"))
         {

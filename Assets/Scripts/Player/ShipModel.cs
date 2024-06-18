@@ -9,8 +9,6 @@ namespace Assets.Scripts.Player
     {
         public GameConfig gameConfig;
 
-        public GameObject ship;
-
         public Transform GunFirstTransform;
         public Transform GunSecondTransform;
         public Transform GunThirdTransform;
@@ -20,15 +18,8 @@ namespace Assets.Scripts.Player
         public GameObject bulletPref;
         public GameObject bulletSuperPref;
 
-        public float HP = 0;
-
         public bool boost = false;
 
-        private void Awake()
-        {
-            this.HP = gameConfig.PlayerHP;
-        }
-        
         public void ToggleBoost()
         {
             boost = !boost;

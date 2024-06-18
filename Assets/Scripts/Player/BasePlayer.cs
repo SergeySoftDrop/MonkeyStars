@@ -22,6 +22,8 @@ public class BasePlayer : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        if(health <= 0) return;
+
         health -= 1;
         onDamage?.Invoke();
         if (health <= 0)

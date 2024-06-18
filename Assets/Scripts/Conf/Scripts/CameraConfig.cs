@@ -12,5 +12,6 @@ namespace Assets.Scripts.Conf.Scripts
     {
         public float pLerp = 0.2f;
         public float rLerp = 0.1f;
+        public float FreeCameraRotationSpeed = 1f;
     }
 }

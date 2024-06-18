@@ -7,6 +7,7 @@ public class Load : MonoBehaviour
 {
     void Start()
     {
+        Time.timeScale = 1;
         SceneManager.LoadSceneAsync(1);
     }
 }
