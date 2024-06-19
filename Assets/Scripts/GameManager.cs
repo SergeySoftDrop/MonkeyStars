@@ -17,9 +17,6 @@ public class GameManager : MonoBehaviour
     public BasePlayer basePlayer;
     public Player player;
 
-    private List<GameObject> enemies_1 = new List<GameObject>();
-    private List<GameObject> enemies_2 = new List<GameObject>();
-
     private bool enemy_1SpawnReloading = false;
     private bool enemy_2SpawnReloading = false;
 
@@ -47,6 +44,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        if (interfaceController.gameEnded) return;
         GenerateInitialEnemiesAndMeteorites();
     }
 
@@ -106,6 +104,7 @@ public class GameManager : MonoBehaviour
 
         for(int i = 0; i < spawnCount; i++)
         {
+            if (interfaceController.gameEnded) return;
             var randPos = GetRandomSpawnPosition(gameConfig.Enemy_2GenerateDistanceMax, gameConfig.Enemy_2GenerateDistanceMin);
 
             GameObject enemy = Instantiate(enemy_1Prefab, randPos, Quaternion.identity);
@@ -133,6 +132,7 @@ public class GameManager : MonoBehaviour
 
         for(int i = 0; i < spawnCount; i++)
         {
+            if (interfaceController.gameEnded) return;
             var randPos = GetRandomSpawnPosition(gameConfig.Enemy_1GenerateDistanceMax, gameConfig.Enemy_1GenerateDistanceMin);
 
             GameObject enemy = Instantiate(enemy_2Prefab, randPos, Quaternion.identity);

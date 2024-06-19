@@ -32,6 +32,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        if (!shipModel) return;
         ResetShipPos();
         Rotate();
         Move();
@@ -98,6 +99,8 @@ public class Player : MonoBehaviour
 
     public void Shoot()
     {
+        if(!shipModel) return;
+
         List<Vector3> firePositions = new List<Vector3>
         {
             shipModel.GunFirstTransform.position, 
@@ -142,12 +145,8 @@ public class Player : MonoBehaviour
         }
         else if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Enemy_2") || other.gameObject.CompareTag("PlayerBase") || other.gameObject.CompareTag("Meteorite"))
         {
-            if (other.gameObject.CompareTag("PlayerBase")) Respawn();
             HP -= gameConfig.PlayerCrashDamage;
-        }
-        else
-        {
-            HP--;
+            if (other.gameObject.CompareTag("PlayerBase")) Respawn();
         }
 
         if(HP <= 0)

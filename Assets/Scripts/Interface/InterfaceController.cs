@@ -34,7 +34,7 @@ public class InterfaceController : MonoBehaviour
 
     private bool isPaused = false;
     private bool escapePressed = false;
-    private bool gameEnded = false;
+    public bool gameEnded = false;
 
     private void Update()
     {
@@ -81,16 +81,19 @@ public class InterfaceController : MonoBehaviour
 
     public void UpdateEnemyCount(int count)
     {
+        if (gameEnded) return;
         EnemyCount.text = $"{count} / {gameConfig.Enemy_1Count + gameConfig.Enemy_2Count}";
     }
 
     public void UpdatePlayerHPCount(float count)
     {
+        if (gameEnded) return;
         PlayerHP.text = $"{count} / {gameConfig.PlayerHP}";
     }
 
     public void UpdateBaseHPCount(float count)
     {
+        if (gameEnded) return;
         BaseHP.text = $"{count} / {gameConfig.BaseHP}";
     }
 
